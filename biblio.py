@@ -3,25 +3,25 @@ import yaml
 import re
 
 class alternate( str ):
-    'Alterna por los elementos.'
+    """Alterna por los elementos."""
     def __init__( self, cadena ):
         self.lista = cadena.split( '<!-- alternate -->' )
         self.n = 0
 
     def __repr__( self ):
-        'Override'
+        """Override."""
         value = self.lista[self.n]
         self.n = (self.n + 1) % len(self.lista)
         return value
 
     def format( self, *params, **keywords ):
-        'Override'
+        """Override."""
         value = self.lista[self.n]
         self.n = (self.n + 1) % len(self.lista)
         return value.format( *params, **keywords )
 
 def carga_plantilla( template ):
-    'Lee y separa el archivo plantilla, regresa tres partes'
+    """Lee y separa el archivo plantilla, regresa tres partes."""
 
     nombre_archivo = template
     # abrir template correspondiente
@@ -39,7 +39,7 @@ def carga_plantilla( template ):
     return inicio, template, final
 
 def traducir_contenido( nombre_archivo, obra ):
-    'Convierte caracteres si hace falta según el formato.'
+    """Convierte caracteres si hace falta según el formato."""
 
     # Convertir & para TeX
     if '.tex' in nombre_archivo:
